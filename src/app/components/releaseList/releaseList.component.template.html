@@ -1,0 +1,21 @@
+<md-toolbar>
+  <button md-icon-button id="backButton"><md-icon class="md-48">keyboard_backspace</md-icon></button>
+  <span class="fill-remaining-space"></span>
+  <span> Project Tracking </span>
+  <span class="fill-remaining-space"></span>
+  <button md-icon-button (click)="refreshData()" id="refreshButton" [hidden]="loadingData"><md-icon class="md-48">autorenew</md-icon></button>
+  <md-progress-circle mode="indeterminate" id ="progress-circle" [hidden]="!loadingData" color="accent"></md-progress-circle>
+</md-toolbar>
+
+<md-list>
+   <md-list-item class="mylistItem" *ngFor="let currentReleasesBO of releasesBO">
+      <md-icon md-list-avatar class="releaseIcon" ><a routerLink="/releaseDetail/{{currentReleasesBO.gsx$id.$t}}" routerLinkActive="active">assessment</a></md-icon>
+      <h3 md-line> {{currentReleasesBO.gsx$application.$t}} </h3>
+      <p md-line>
+        <span> Version : {{currentReleasesBO.gsx$version.$t}} </span>
+      </p>
+      <p md-line>
+        <span> Du {{currentReleasesBO.gsx$start.$t}} Au {{currentReleasesBO.gsx$end.$t}}  </span>
+      </p>
+   </md-list-item>
+</md-list>

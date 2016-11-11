@@ -1,0 +1,31 @@
+md-toolbar{
+  background : #00517d;
+  color: #FFFFFF;
+}
+md-toolbar md-icon{
+  color : #000000;
+}
+.releaseIcon{
+ font-size: 48px;
+}
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+#refreshButton{
+  background-color:#FFFFFF;
+}
+#backButton{
+  background-color:#FFFFFF;
+}
+
+.md-list-item{
+   border-bottom: 1px solid #000000;
+}
+[hidden] { display: none !important;}
+#progress-circle{
+  width:45px;
+}
+md-progress-circle[color='accent'] path, md-spinner[color='accent'] path {
+    stroke: #FFFFFF;
+}

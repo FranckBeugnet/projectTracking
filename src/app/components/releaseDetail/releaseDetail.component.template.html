@@ -1,0 +1,17 @@
+<md-toolbar>
+  <button md-icon-button onClick="javascript:history.back();" id="backButton"><md-icon class="md-48">keyboard_backspace</md-icon></button>
+  <span class="fill-remaining-space"></span>
+  <span>Release Detail</span>
+  <span class="fill-remaining-space"></span>
+</md-toolbar>
+
+<div align="center">
+  <h4>Burndown Chart</h4>
+  <canvas baseChart
+    [data]="lineChartData"
+    [labels]="lineChartLabels"
+    [chartType]="lineChartType"
+    [legend]="lineChartLegend"
+    (chartHover)="chartHovered($event)"
+    (chartClick)="chartClicked($event)"></canvas>
+</div>
