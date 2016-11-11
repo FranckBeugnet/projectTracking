@@ -9,20 +9,24 @@
 
 <md-sidenav-layout>
   <md-sidenav #start (open)="closeStartButton.focus()">
-    <br>
-    <md-input placeholder="GoogleSheetDataUrl" maxlength="100" class="demo-full-width"
-          value="1quxG3rmPGlPUtyraANX8LVOc32EAJS4YOlBYUZLnqa4"
-          #characterCountHintExample>
-      <md-hint align="end">{{characterCountHintExample.characterCount}} / 100</md-hint>
-    </md-input>
-    <br>
-    <button md-raised-button id="saveButton">Save</button>
-    <br><br>
-    Version : 1.0
-    <br>
-    Author : Franck Beugnet
-    <br><br>
-    <button md-raised-button id="closeButton" #closeStartButton (click)="start.close()">Close</button>
+    <div align="center">
+      <br>
+      <md-input placeholder="GoogleSheetDataUrl" maxlength="100" class="demo-full-width" [(ngModel)]="inputSheetDataValue" #inputSheetData>
+        <md-hint align="end">{{inputSheetData.characterCount}} / 100</md-hint>
+      </md-input>
+      <br><br>
+      <button md-raised-button id="saveButton" (click)="saveData()">Save</button>
+      <br>------------------------------------------<br>
+      Last Update
+      <br>
+      {{dateData}}
+      <br>------------------------------------------<br>
+      Version : 1.0
+      <br>
+      Author : Franck Beugnet
+      <br>------------------------------------------<br>
+      <button md-raised-button id="closeButton" #closeStartButton (click)="start.close()">Close</button>
+    </div>
   </md-sidenav>
   <md-list>
      <md-list-item class="mylistItem" *ngFor="let currentReleasesBO of releasesBO">

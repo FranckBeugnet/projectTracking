@@ -1,12 +1,12 @@
 import { Component,  OnInit } from '@angular/core';
 import { ActivatedRoute, Params }   from '@angular/router';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
-import { RemoteDataService } from '../../services/remoteData.services';
+import { LocalDataService } from '../../services/localData.services';
 import { BurndownBO } from '../../bo/burndownBO';
 
 @Component({
     templateUrl: 'releaseDetail.component.template.html',
-    providers: [RemoteDataService]
+    providers: [LocalDataService]
 })
 
 export class ReleaseDetailComponent implements OnInit {
@@ -20,9 +20,8 @@ export class ReleaseDetailComponent implements OnInit {
   public lineChartLegend:boolean = false;
 
   constructor(
-    private remoteDataService: RemoteDataService,
+    private localDataService: LocalDataService,
     private route: ActivatedRoute) {
-    this.refreshData();
   }
 
   //get release number in get param
@@ -30,14 +29,13 @@ export class ReleaseDetailComponent implements OnInit {
     this.route.params.forEach((params: Params) => {
       this.releaseNumber = params['id'];
     });
+    this.refreshData();
   }
 
   //call remote provider for getting data
   refreshData(): void {
     this.burndownBOData=[];
-    this.remoteDataService.getBurndownList().subscribe(
-                       response => this.responseRefreshData(response),
-                       error =>  this.errorMessage = <any>error);
+    this.responseRefreshData(this.localDataService.getBurndownList());
   }
 
   //parse data for graph var

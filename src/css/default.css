@@ -5,6 +5,16 @@ md-toolbar{
 md-toolbar md-icon{
   color : #000000;
 }
+snack-bar-container{
+  margin-bottom: 20px;
+  height: 48px !important;
+}
+.md-tab-label{
+  min-width: 33% !important;
+}
+.monTabContent{
+  margin-left: 5px;
+}
 .releaseIcon{
  font-size: 48px;
 }
@@ -28,7 +38,6 @@ md-toolbar md-icon{
 #saveButton{
   background-color:#009900;
 }
-
 
 .md-list-item{
    border-bottom: 1px solid #000000;

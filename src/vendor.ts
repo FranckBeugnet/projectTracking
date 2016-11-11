@@ -4,6 +4,7 @@ import '@angular/platform-browser-dynamic';
 import '@angular/core';
 import '@angular/common';
 import '@angular/http';
+import '@angular/forms';
 import '@angular/router';
 // RxJS
 import 'rxjs';
@@ -13,8 +14,6 @@ import '@angular/material';
 import '@angular/material/core/theming/prebuilt/deeppurple-amber.css';
 import './css/default.css';
 import './img/ProjectTracking-SplashScreen.png';
-//mock
-import './mock/release.json';
 //chartjs
 import 'chart.js';
 import 'ng2-charts';

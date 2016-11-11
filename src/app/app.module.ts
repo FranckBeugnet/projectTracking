@@ -2,6 +2,7 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MaterialModule } from '@angular/material';
 import { HttpModule }    from '@angular/http';
+import {FormsModule} from '@angular/forms';
 import { RouterModule }   from '@angular/router';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 
@@ -15,6 +16,7 @@ import { ReleaseListComponent }   from './components/releaseList/releaseList.com
     MaterialModule.forRoot(),
     HttpModule,
     ChartsModule,
+    FormsModule,
     RouterModule.forRoot([
       { path: 'D:/androidProjects/projectTracking-Webpack/dist', component: ReleaseListComponent },
       { path: 'D:/D:/androidProjects/projectTracking-Webpack/dist', component: ReleaseListComponent },
