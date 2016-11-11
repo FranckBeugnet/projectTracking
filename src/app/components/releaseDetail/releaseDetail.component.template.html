@@ -7,11 +7,15 @@
 
 <div align="center">
   <h4>Burndown Chart</h4>
+  <h6><b><font style='color:#FF6666'>Prévu</font> / <font style='color:#0080FF'>Réalisé</font></b></h6>
   <canvas baseChart
     [data]="lineChartData"
     [labels]="lineChartLabels"
     [chartType]="lineChartType"
     [legend]="lineChartLegend"
     (chartHover)="chartHovered($event)"
-    (chartClick)="chartClicked($event)"></canvas>
+    (chartClick)="chartClicked($event)"
+    width="100%"
+    height="100%"></canvas>
+
 </div>

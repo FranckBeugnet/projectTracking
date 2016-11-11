@@ -12,12 +12,23 @@ md-toolbar md-icon{
 .fill-remaining-space {
   flex: 1 1 auto;
 }
+
 #refreshButton{
   background-color:#FFFFFF;
 }
 #backButton{
   background-color:#FFFFFF;
 }
+#sideNavButton{
+  background-color:#FFFFFF;
+}
+#closeButton{
+  background-color:#FF9933;
+}
+#saveButton{
+  background-color:#009900;
+}
+
 
 .md-list-item{
    border-bottom: 1px solid #000000;

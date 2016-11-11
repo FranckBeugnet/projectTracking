@@ -1,22 +1,30 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { ReleaseBO } from '../bo/releaseBO';
+import { BurndownBO } from '../bo/burndownBO';
 import { Observable }     from 'rxjs/Observable';
 
 @Injectable()
 export class RemoteDataService {
 
-  private dataUrl = 'https://spreadsheets.google.com/feeds/list/1quxG3rmPGlPUtyraANX8LVOc32EAJS4YOlBYUZLnqa4/od6/public/values?alt=json';  // URL to web API
+  private dataUrlRelease = 'https://spreadsheets.google.com/feeds/list/1quxG3rmPGlPUtyraANX8LVOc32EAJS4YOlBYUZLnqa4/1/public/values?alt=json';  // URL to web API
+  private dataUrlBurndown = 'https://spreadsheets.google.com/feeds/list/1quxG3rmPGlPUtyraANX8LVOc32EAJS4YOlBYUZLnqa4/2/public/values?alt=json';  // URL to web API
 
   constructor (private http: Http) {}
 
   getReleaseList (): Observable<ReleaseBO[]> {
-    console.log("XHR Request to : " + this.dataUrl);
-    return this.http.get(this.dataUrl)
-                    .map(this.extractDataRelease)
+    console.log("XHR Request to : " + this.dataUrlRelease);
+    return this.http.get(this.dataUrlRelease)
+                    .map(this.extractData)
                     .catch(this.handleError);
   }
-  private extractDataRelease(res: Response) {
+  getBurndownList (): Observable<BurndownBO[]> {
+    console.log("XHR Request to : " + this.dataUrlBurndown);
+    return this.http.get(this.dataUrlBurndown)
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+  private extractData(res: Response) {
     let body = res.json();
     return body.feed.entry || { };
   }
