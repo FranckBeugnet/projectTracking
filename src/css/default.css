@@ -49,3 +49,23 @@ snack-bar-container{
 md-progress-circle[color='accent'] path, md-spinner[color='accent'] path {
     stroke: #FFFFFF;
 }
+
+table {
+    font-family: arial, sans-serif;
+    font-size:12px;
+    border-collapse: collapse;
+    width: 100%;
+}
+.fisrtLine{
+  background-color: #00517d !important;
+  color:#FFFFFF !important;
+  font-weight: bold;
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+tr:nth-child(even) {
+    background-color: #dddddd;
+}

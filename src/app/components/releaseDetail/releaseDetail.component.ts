@@ -3,6 +3,8 @@ import { ActivatedRoute, Params }   from '@angular/router';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { LocalDataService } from '../../services/localData.services';
 import { BurndownBO } from '../../bo/burndownBO';
+import { ReleaseBO } from '../../bo/releaseBO';
+import { ContentBO } from '../../bo/contentBO';
 
 @Component({
     templateUrl: 'releaseDetail.component.template.html',
@@ -12,6 +14,8 @@ import { BurndownBO } from '../../bo/burndownBO';
 export class ReleaseDetailComponent implements OnInit {
 
   burndownBOData: BurndownBO[];
+  releaseBO: ReleaseBO;
+  contentBOData: ContentBO[];
   releaseNumber: string;
   errorMessage: string;
   public lineChartData:Array<any> = [[],[]];
@@ -30,6 +34,8 @@ export class ReleaseDetailComponent implements OnInit {
       this.releaseNumber = params['id'];
     });
     this.refreshData();
+    this.releaseBO=this.localDataService.getReleaseDetail(this.releaseNumber);
+    this.contentBOData=this.localDataService.getContentDetail(this.releaseNumber);
   }
 
   //call remote provider for getting data

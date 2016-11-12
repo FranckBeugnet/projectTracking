@@ -17,17 +17,19 @@
       <br><br>
       <button md-raised-button id="saveButton" (click)="saveData()">Save</button>
       <br>------------------------------------------<br>
-      Last Update
+      Last Data Update
       <br>
       {{dateData}}
       <br>------------------------------------------<br>
       Version : 1.0
       <br>
       Author : Franck Beugnet
+      Contact : franck2903@gmail.com
       <br>------------------------------------------<br>
       <button md-raised-button id="closeButton" #closeStartButton (click)="start.close()">Close</button>
     </div>
   </md-sidenav>
+
   <md-list>
      <md-list-item class="mylistItem" *ngFor="let currentReleasesBO of releasesBO">
         <md-icon md-list-avatar class="releaseIcon" ><a [style.color]="currentReleasesBO.gsx$color.$t" routerLink="/releaseDetail/{{currentReleasesBO.gsx$id.$t}}" routerLinkActive="active">assessment</a></md-icon>
@@ -36,8 +38,9 @@
           <span> Version : {{currentReleasesBO.gsx$version.$t}} </span>
         </p>
         <p md-line>
-          <span> Du {{currentReleasesBO.gsx$start.$t}} Au {{currentReleasesBO.gsx$end.$t}}  </span>
+          <span> Start : {{currentReleasesBO.gsx$start.$t}} End : {{currentReleasesBO.gsx$end.$t}}  </span>
         </p>
      </md-list-item>
   </md-list>
+
 </md-sidenav-layout>

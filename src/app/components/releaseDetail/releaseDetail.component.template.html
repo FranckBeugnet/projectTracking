@@ -1,48 +1,58 @@
 <md-toolbar>
   <button md-icon-button onClick="javascript:history.back();" id="backButton"><md-icon class="md-48">keyboard_backspace</md-icon></button>
   <span class="fill-remaining-space"></span>
-  <span>Release Detail</span>
+  <span>{{releaseBO.gsx$application.$t}} - {{releaseBO.gsx$version.$t}} </span>
   <span class="fill-remaining-space"></span>
 </md-toolbar>
-
+<div align="center">
+  <h4>Burndown Chart</h4>
+  <h6><b><font style='color:#FF6666'>Planned</font> / <font style='color:#0080FF'>Executed</font></b></h6>
+  <canvas baseChart
+    [data]="lineChartData"
+    [labels]="lineChartLabels"
+    [chartType]="lineChartType"
+    [legend]="lineChartLegend"
+    (chartHover)="chartHovered($event)"
+    (chartClick)="chartClicked($event)"
+    ></canvas>
+</div>
 <md-tab-group>
   <md-tab class="tabDetail">
     <template md-tab-label>General</template>
     <template md-tab-content>
       <div class="monTabContent">
-        Avancement conforme<br>
-        blabla balbl<br>
-        kqsmldkmlqskd sqkd mlqks<br>
-        klmqskdml<br>
-        qskd lmqskdm<br>
-        qskld qmsdlk<br>
+        <div [innerHTML]="releaseBO.gsx$comment.$t">
+        </div>
       </div>
     </template>
   </md-tab>
   <md-tab class="tabDetail">
     <template md-tab-label>Content</template>
     <template md-tab-content>
-      <md-grid-list cols="4" [style.background]="'lightblue'">
-         <md-grid-tile>One</md-grid-tile>
-         <md-grid-tile>Two</md-grid-tile>
-         <md-grid-tile>Three</md-grid-tile>
-         <md-grid-tile>Four</md-grid-tile>
-      </md-grid-list>
+      <table>
+          <tr class="fisrtLine">
+            <td>Ref.</td>
+            <td>Details</td>
+            <td>d/h-Dev</td>
+            <td>d/h-All</td>
+            <td>Status</td>
+          </tr>
+          <tr *ngFor="let contentBOCurrent of contentBOData">
+            <td>{{contentBOCurrent.gsx$ref.$t}}</td>
+            <td>{{contentBOCurrent.gsx$detail.$t}}</td>
+            <td>{{contentBOCurrent.gsx$devestimate.$t}}</td>
+            <td>{{contentBOCurrent.gsx$allestimate.$t}}</td>
+            <td>{{contentBOCurrent.gsx$status.$t}}</td>
+          </tr>
+      </table>
     </template>
   </md-tab>
   <md-tab class="tabDetail">
-    <template md-tab-label>Graph</template>
+    <template md-tab-label>Quality</template>
     <template md-tab-content>
-      <div align="center">
-        <h4>Burndown Chart</h4>
-        <h6><b><font style='color:#FF6666'>Planned</font> / <font style='color:#0080FF'>Executed</font></b></h6>
-        <canvas baseChart
-          [data]="lineChartData"
-          [labels]="lineChartLabels"
-          [chartType]="lineChartType"
-          [legend]="lineChartLegend"
-          (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
+      <div align='center'>
+        Under Construction<br>
+        <md-icon class="md-48">build</md-icon>
       </div>
     </template>
   </md-tab>

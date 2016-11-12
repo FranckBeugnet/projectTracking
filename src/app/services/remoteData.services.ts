@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { ReleaseBO } from '../bo/releaseBO';
 import { BurndownBO } from '../bo/burndownBO';
+import { ContentBO } from '../bo/contentBO';
 import { Observable }     from 'rxjs/Observable';
 import { LocalDataService } from '../services/localData.services';
 
@@ -10,6 +11,7 @@ export class RemoteDataService {
 
   private dataUrlRelease = 'https://spreadsheets.google.com/feeds/list/googleSheetKey/1/public/values?alt=json';  // URL to web API
   private dataUrlBurndown = 'https://spreadsheets.google.com/feeds/list/googleSheetKey/2/public/values?alt=json';  // URL to web API
+  private dataUrlContent = 'https://spreadsheets.google.com/feeds/list/googleSheetKey/3/public/values?alt=json';  // URL to web API
   private googleSheetKey : string;
 
   constructor (private http: Http,
@@ -26,6 +28,12 @@ export class RemoteDataService {
   getBurndownList (): Observable<BurndownBO[]> {
     console.log("XHR Request to : " + this.dataUrlBurndown);
     return this.http.get(this.dataUrlBurndown.replace('googleSheetKey',this.googleSheetKey))
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+  getContentList (): Observable<ContentBO[]> {
+    console.log("XHR Request to : " + this.dataUrlContent);
+    return this.http.get(this.dataUrlContent.replace('googleSheetKey',this.googleSheetKey))
                     .map(this.extractData)
                     .catch(this.handleError);
   }

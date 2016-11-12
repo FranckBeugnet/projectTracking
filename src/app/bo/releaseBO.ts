@@ -17,4 +17,7 @@ export class ReleaseBO {
   gsx$end: {
     $t:string
   };
+  gsx$comment: {
+    $t:string
+  };
 }
