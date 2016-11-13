@@ -16,11 +16,11 @@ export class RemoteDataService {
 
   constructor (private http: Http,
     private localDataService:LocalDataService) {
-    this.googleSheetKey=this.localDataService.getSheetData();
   }
 
   getReleaseList (): Observable<ReleaseBO[]> {
     console.log("XHR Request to : " + this.dataUrlRelease);
+    this.googleSheetKey=this.localDataService.getSheetData();
     return this.http.get(this.dataUrlRelease.replace('googleSheetKey',this.googleSheetKey))
                     .map(this.extractData)
                     .catch(this.handleError);

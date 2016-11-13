@@ -39,6 +39,7 @@ export class ReleaseListComponent {
 
   saveData(): void {
     this.localDataService.setSheetData(this.inputSheetDataValue);
+    this.showToast('Données sauvegardées','3000');
   }
 
   responseRefreshReleaseListData(response:ReleaseBO[]){

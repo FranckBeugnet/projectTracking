@@ -5,6 +5,18 @@ md-toolbar{
 md-toolbar md-icon{
   color : #000000;
 }
+mwl-calendar-month-cell{
+  height: 70px;
+}
+.cal-month-view .cal-day-cell {
+  min-height: 70px;
+}
+.cal-month-view .cal-day-number {
+  margin-top: 15px !important;
+}
+.cal-day-badge{
+  display:none !important;
+}
 snack-bar-container{
   margin-bottom: 20px;
   height: 48px !important;
@@ -22,8 +34,16 @@ snack-bar-container{
 .fill-remaining-space {
   flex: 1 1 auto;
 }
-
+.btn-calendar{
+  width:110px !important;
+}
+.btn-primary{
+  background-color:#00517d !important;
+}
 #refreshButton{
+  background-color:#FFFFFF;
+}
+#CalendarButton{
   background-color:#FFFFFF;
 }
 #backButton{

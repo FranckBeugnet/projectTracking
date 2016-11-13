@@ -1,0 +1,25 @@
+<md-toolbar>
+  <button md-icon-button onClick="javascript:history.back();" id="backButton"><md-icon class="md-48">keyboard_backspace</md-icon></button>
+  <span class="fill-remaining-space"></span>
+  <span>Calendar View</span>
+  <span class="fill-remaining-space"></span>
+</md-toolbar>
+<br>
+<div class="container">
+  <div class="row text-center">
+    <div class="col-md-4">
+       <div class="btn-group">
+         <div class="btn btn-primary btn-calendar" (click)="decrement()">Previous</div>
+         <div class="btn btn-default btn-calendar" (click)="today()">Today</div>
+         <div class="btn btn-primary btn-calendar" (click)="increment()">Next</div>
+       </div>
+    </div>
+  </div>
+  <mwl-calendar-month-view
+    [viewDate]="viewDate"
+    [events]="events"
+    [refresh]="refresh"
+    [activeDayIsOpen]="activeDayIsOpen"
+    (dayClicked)="dayClicked($event.day)">
+  </mwl-calendar-month-view>
+</div>

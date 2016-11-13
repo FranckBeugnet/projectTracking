@@ -3,6 +3,8 @@
   <span class="fill-remaining-space"></span>
   <span> Project Tracking </span>
   <span class="fill-remaining-space"></span>
+  <a routerLink="/releaseCalendar/"><button md-icon-button id="CalendarButton"><md-icon class="md-48">date_range</md-icon></button></a>
+  &nbsp;
   <button md-icon-button (click)="refreshData()" id="refreshButton" [hidden]="loadingData"><md-icon class="md-48">autorenew</md-icon></button>
   <md-progress-circle mode="indeterminate" id ="progress-circle" [hidden]="!loadingData" color="accent"></md-progress-circle>
 </md-toolbar>
@@ -24,12 +26,12 @@
       Version : 1.0
       <br>
       Author : Franck Beugnet
+      <br>
       Contact : franck2903@gmail.com
       <br>------------------------------------------<br>
       <button md-raised-button id="closeButton" #closeStartButton (click)="start.close()">Close</button>
     </div>
   </md-sidenav>
-
   <md-list>
      <md-list-item class="mylistItem" *ngFor="let currentReleasesBO of releasesBO">
         <md-icon md-list-avatar class="releaseIcon" ><a [style.color]="currentReleasesBO.gsx$color.$t" routerLink="/releaseDetail/{{currentReleasesBO.gsx$id.$t}}" routerLinkActive="active">assessment</a></md-icon>
