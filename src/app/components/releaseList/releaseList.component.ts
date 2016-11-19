@@ -4,7 +4,8 @@ import { LocalDataService } from '../../services/localData.services';
 import { ReleaseBO } from '../../bo/releaseBO';
 import { BurndownBO } from '../../bo/burndownBO';
 import { ContentBO } from '../../bo/contentBO';
-import {MdSnackBar, MdSnackBarConfig} from '@angular/material';
+import { MemberBO } from '../../bo/memberBO';
+import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
 import '../../rxjs-operators';
 
 @Component({
@@ -52,6 +53,13 @@ export class ReleaseListComponent {
 
   responseRefreshContentListData(response:ContentBO[]){
     this.localDataService.setContentList(response);
+    this.remoteDataService.getMemberList().subscribe(
+                      response => this.responseRefreshMemberListData(response),
+                      error =>  this.errorMessage = <any>error);
+  }
+
+  responseRefreshMemberListData(response:MemberBO[]){
+    this.localDataService.setMemberList(response);
     this.remoteDataService.getBurndownList().subscribe(
                       response => this.responseRefreshBurndownListData(response),
                       error =>  this.errorMessage = <any>error);

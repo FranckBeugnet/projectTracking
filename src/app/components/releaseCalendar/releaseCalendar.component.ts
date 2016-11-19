@@ -93,9 +93,9 @@ export class ReleaseCalendarComponent {
         this.viewDate = date;
       }
     }*/
-    let msg = '';
+    let msg = 'Planned Delivery :\n';
     for (let i in events){
-      msg += events[i].title+'\n';
+      msg += '- '+events[i].title+'\n';
     }
     alert(msg);
   }

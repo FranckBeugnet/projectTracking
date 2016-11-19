@@ -1,0 +1,18 @@
+<md-toolbar>
+  <button md-icon-button onClick="javascript:history.back();" id="backButton"><md-icon class="md-48">keyboard_backspace</md-icon></button>
+  <span class="fill-remaining-space"></span>
+  <span>Team Members</span>
+  <span class="fill-remaining-space"></span>
+</md-toolbar>
+<md-card  *ngFor="let currentMember of TeamMember" >
+  <md-card-title-group >
+    <img md-card-sm-image src="{{currentMember.gsx$avatar.$t}}" >
+    <md-card-title>{{currentMember.gsx$name.$t}}</md-card-title>
+      <md-card-subtitle>{{currentMember.gsx$function.$t}}<br>
+        Since : {{currentMember.gsx$since.$t}}</md-card-subtitle>
+  </md-card-title-group>
+  <md-card-actions>
+         <button md-button><a href="tel:{{currentMember.gsx$gsm.$t}}">{{currentMember.gsx$gsm.$t}}</a></button>
+         <button md-button><a href="mailto:{{currentMember.gsx$mail.$t}}">{{currentMember.gsx$mail.$t}}</a></button>
+    </md-card-actions>
+</md-card>

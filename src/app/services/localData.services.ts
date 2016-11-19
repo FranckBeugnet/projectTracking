@@ -2,6 +2,7 @@ import { Injectable} from '@angular/core';
 import { ReleaseBO } from '../bo/releaseBO';
 import { BurndownBO } from '../bo/burndownBO';
 import { ContentBO } from '../bo/contentBO';
+import { MemberBO } from '../bo/memberBO';
 
 @Injectable()
 export class LocalDataService {
@@ -11,6 +12,7 @@ export class LocalDataService {
   private dateDataKey = "dateData";
   private sheetDataKey = "sheetData";
   private contentDataKey = "contentData";
+  private memberDataKey = "memberData";
   private defaultSheetDataValue="1quxG3rmPGlPUtyraANX8LVOc32EAJS4YOlBYUZLnqa4";
 
   constructor () {}
@@ -20,7 +22,10 @@ export class LocalDataService {
     localStorage.setItem(this.sheetDataKey,data);
   }
   getSheetData () : any {
-    return localStorage.getItem(this.sheetDataKey);
+    let returnvalue :string;
+    returnvalue=localStorage.getItem(this.sheetDataKey);
+    if (returnvalue==='' || returnvalue === null){returnvalue=this.defaultSheetDataValue;}
+    return returnvalue;
   }
 
   setdateData () {
@@ -52,6 +57,13 @@ export class LocalDataService {
   }
   getBurndownList () : any {
     return JSON.parse(localStorage.getItem(this.burndownListKey));
+  }
+
+  setMemberList (data:MemberBO[]) {
+    localStorage.setItem(this.memberDataKey, JSON.stringify(data));
+  }
+  getMemberList () : any {
+    return JSON.parse(localStorage.getItem(this.memberDataKey));
   }
 
   setContentList (data:ContentBO[]) {

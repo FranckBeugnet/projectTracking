@@ -3,6 +3,8 @@
   <span class="fill-remaining-space"></span>
   <span> Project Tracking </span>
   <span class="fill-remaining-space"></span>
+  <a routerLink="/teamMember/"><button md-icon-button id="TeamButton"><md-icon class="md-48">face</md-icon></button></a>
+  &nbsp;
   <a routerLink="/releaseCalendar/"><button md-icon-button id="CalendarButton"><md-icon class="md-48">date_range</md-icon></button></a>
   &nbsp;
   <button md-icon-button (click)="refreshData()" id="refreshButton" [hidden]="loadingData"><md-icon class="md-48">autorenew</md-icon></button>
@@ -33,7 +35,7 @@
     </div>
   </md-sidenav>
   <md-list>
-     <md-list-item class="mylistItem" *ngFor="let currentReleasesBO of releasesBO">
+     <md-list-item class="mylistItem" *ngFor="let currentReleasesBO of releasesBO" routerLink="/releaseDetail/{{currentReleasesBO.gsx$id.$t}}" routerLinkActive="active">
         <md-icon md-list-avatar class="releaseIcon" ><a [style.color]="currentReleasesBO.gsx$color.$t" routerLink="/releaseDetail/{{currentReleasesBO.gsx$id.$t}}" routerLinkActive="active">assessment</a></md-icon>
         <h3 md-line> {{currentReleasesBO.gsx$application.$t}} </h3>
         <p md-line>
