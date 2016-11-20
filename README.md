@@ -6,4 +6,5 @@ Angular2-Project
 Release Note since previous version :
 - Default Google Sheet is pre-save (no need to configure for preview)
 - Add Team Member Section
+- Add release filter option on the left side menu
 - Fixe Toolbar At top of the screen
