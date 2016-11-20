@@ -6,6 +6,7 @@ import { BurndownBO } from '../../bo/burndownBO';
 import { ContentBO } from '../../bo/contentBO';
 import { MemberBO } from '../../bo/memberBO';
 import { MdSnackBar, MdSnackBarConfig } from '@angular/material';
+import { FilterRelease } from '../../pipes/filterRelease';
 import '../../rxjs-operators';
 
 @Component({
@@ -20,6 +21,7 @@ export class ReleaseListComponent {
   releasesBO: ReleaseBO[];
   dateData: string;
   inputSheetDataValue: string;
+  inputReleaseFilterValue: string = "";
 
   constructor(
     private remoteDataService: RemoteDataService,

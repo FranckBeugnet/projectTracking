@@ -4,25 +4,31 @@
   <span>{{releaseBO.gsx$application.$t}} - {{releaseBO.gsx$version.$t}} </span>
   <span class="fill-remaining-space"></span>
 </md-toolbar>
-<div align="center">
+<div class="blank-toolbar"></div>
+<div>
   <h4>Burndown Chart</h4>
   <h6><b><font style='color:#FF6666'>Planned</font> / <font style='color:#0080FF'>Executed</font></b></h6>
   <canvas baseChart
     [data]="lineChartData"
     [labels]="lineChartLabels"
     [chartType]="lineChartType"
-    [legend]="lineChartLegend"
-    (chartHover)="chartHovered($event)"
-    (chartClick)="chartClicked($event)"
-    ></canvas>
+    [legend]="lineChartLegend"></canvas>
 </div>
+<!--<div [hidden]="!myVar">
+  <canvas baseChart
+          [data]="pieChartData"
+          [labels]="pieChartLabels"
+          [chartType]="pieChartType"></canvas>
+</div>-->
 <md-tab-group>
   <md-tab class="tabDetail">
     <template md-tab-label>General</template>
     <template md-tab-content>
       <div class="monTabContent">
-        <div [innerHTML]="releaseBO.gsx$comment.$t">
+        <div align="center">
+          <h4>Last Informations</h4>
         </div>
+        <div [innerHTML]="releaseBO.gsx$comment.$t"></div>
       </div>
     </template>
   </md-tab>
@@ -45,6 +51,7 @@
             <td>{{contentBOCurrent.gsx$status.$t}}</td>
           </tr>
       </table>
+
     </template>
   </md-tab>
   <md-tab class="tabDetail">

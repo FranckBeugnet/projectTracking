@@ -4,6 +4,7 @@
   <span>Team Members</span>
   <span class="fill-remaining-space"></span>
 </md-toolbar>
+<div class="blank-toolbar"></div>
 <md-card  *ngFor="let currentMember of TeamMember" >
   <md-card-title-group >
     <img md-card-sm-image src="{{currentMember.gsx$avatar.$t}}" >
@@ -12,7 +13,7 @@
         Since : {{currentMember.gsx$since.$t}}</md-card-subtitle>
   </md-card-title-group>
   <md-card-actions>
-         <a href="tel:{{currentMember.gsx$gsm.$t}}"><button md-button>{{currentMember.gsx$gsm.$t}}</button></a>
-         <a href="mailto:{{currentMember.gsx$mail.$t}}"><button md-button>{{currentMember.gsx$mail.$t}}</button></a>
+        <a href="tel:{{currentMember.gsx$gsm.$t}}"><button md-raised-button>{{currentMember.gsx$gsm.$t}}</button></a>
+        <a href="mailto:{{currentMember.gsx$mail.$t}}"><button md-raised-button>{{currentMember.gsx$mail.$t}}</button></a>
     </md-card-actions>
 </md-card>

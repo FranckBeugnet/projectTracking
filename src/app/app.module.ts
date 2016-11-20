@@ -13,6 +13,8 @@ import { ReleaseListComponent }   from './components/releaseList/releaseList.com
 import { ReleaseCalendarComponent }   from './components/releaseCalendar/releaseCalendar.component';
 import { TeamMemberComponent }   from './components/teamMember/teamMember.component';
 
+import { FilterRelease } from './pipes/filterRelease';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -36,7 +38,8 @@ import { TeamMemberComponent }   from './components/teamMember/teamMember.compon
     ReleaseDetailComponent,
     ReleaseListComponent,
     ReleaseCalendarComponent,
-    TeamMemberComponent
+    TeamMemberComponent,
+    FilterRelease
   ],
   bootstrap:    [ AppComponent ]
 })

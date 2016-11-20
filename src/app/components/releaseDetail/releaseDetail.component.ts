@@ -23,6 +23,11 @@ export class ReleaseDetailComponent implements OnInit {
   public lineChartType:string = 'line';
   public lineChartLegend:boolean = false;
 
+  public pieChartType:string = 'pie';
+  public pieChartLabels:string[] = ['Evol1', 'Evol2', 'Evol3'];
+  public pieChartData:number[] = [300, 500, 100];
+
+
   constructor(
     private localDataService: LocalDataService,
     private route: ActivatedRoute) {

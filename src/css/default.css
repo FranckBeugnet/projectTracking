@@ -1,6 +1,12 @@
 md-toolbar{
   background : #00517d;
   color: #FFFFFF;
+  position: fixed;
+  top: 0px;
+  z-index: 10;
+}
+.blank-toolbar{
+  height: 64px;
 }
 md-toolbar md-icon{
   color : #000000;
@@ -40,10 +46,10 @@ snack-bar-container{
 .btn-primary{
   background-color:#00517d !important;
 }
-#refreshButton{
+#CalendarButton{
   background-color:#FFFFFF;
 }
-#CalendarButton{
+#refreshButton{
   background-color:#FFFFFF;
 }
 #TeamButton{
@@ -99,4 +105,7 @@ md-card{
 }
 md-card-title, md-card-subtitle, md-card-content, md-card-actions{
   margin-bottom: 0px !important;
+}
+md-card-actions{
+  margin-left: 0px !important;
 }

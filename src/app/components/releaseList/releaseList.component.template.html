@@ -10,20 +10,24 @@
   <button md-icon-button (click)="refreshData()" id="refreshButton" [hidden]="loadingData"><md-icon class="md-48">autorenew</md-icon></button>
   <md-progress-circle mode="indeterminate" id ="progress-circle" [hidden]="!loadingData" color="accent"></md-progress-circle>
 </md-toolbar>
-
+<div class="blank-toolbar"></div>
 <md-sidenav-layout>
   <md-sidenav #start (open)="closeStartButton.focus()">
     <div align="center">
       <br>
+      <md-input placeholder="Release Filter" maxlength="100" class="demo-full-width" [(ngModel)]="inputReleaseFilterValue" #inputReleaseFilter>
+        <md-hint align="end">{{inputReleaseFilter.characterCount}} / 100</md-hint>
+      </md-input>
+      <br>------------------------------------------<br>
+      Last Data Update
+      <br>
+      {{dateData}}
+      <br>------------------------------------------<br>
       <md-input placeholder="GoogleSheetDataUrl" maxlength="100" class="demo-full-width" [(ngModel)]="inputSheetDataValue" #inputSheetData>
         <md-hint align="end">{{inputSheetData.characterCount}} / 100</md-hint>
       </md-input>
       <br><br>
       <button md-raised-button id="saveButton" (click)="saveData()">Save</button>
-      <br>------------------------------------------<br>
-      Last Data Update
-      <br>
-      {{dateData}}
       <br>------------------------------------------<br>
       Version : 1.0
       <br>
@@ -35,7 +39,7 @@
     </div>
   </md-sidenav>
   <md-list>
-     <md-list-item class="mylistItem" *ngFor="let currentReleasesBO of releasesBO" routerLink="/releaseDetail/{{currentReleasesBO.gsx$id.$t}}" routerLinkActive="active">
+     <md-list-item class="mylistItem" *ngFor="let currentReleasesBO of (releasesBO | filterRelease: inputReleaseFilterValue)"  routerLink="/releaseDetail/{{currentReleasesBO.gsx$id.$t}}" routerLinkActive="active">
         <md-icon md-list-avatar class="releaseIcon" ><a [style.color]="currentReleasesBO.gsx$color.$t" routerLink="/releaseDetail/{{currentReleasesBO.gsx$id.$t}}" routerLinkActive="active">assessment</a></md-icon>
         <h3 md-line> {{currentReleasesBO.gsx$application.$t}} </h3>
         <p md-line>
