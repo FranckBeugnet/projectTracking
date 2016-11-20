@@ -6,4 +6,4 @@ Angular2-Project
 Release Note since previous version :
 - Default Google Sheet is pre-save (no need to configure for preview)
 - Add Team Member Section
-- Fixe Toolbar on the top of the screen
+- Fixe Toolbar At top of the screen
