@@ -5,29 +5,24 @@
   <span class="fill-remaining-space"></span>
 </md-toolbar>
 <div class="blank-toolbar"></div>
-<div>
-  <h4>Burndown Chart</h4>
-  <h6><b><font style='color:#FF6666'>Planned</font> / <font style='color:#0080FF'>Executed</font></b></h6>
-  <canvas baseChart
-    [data]="lineChartData"
-    [labels]="lineChartLabels"
-    [chartType]="lineChartType"
-    [legend]="lineChartLegend"></canvas>
-</div>
-<!--<div [hidden]="!myVar">
-  <canvas baseChart
-          [data]="pieChartData"
-          [labels]="pieChartLabels"
-          [chartType]="pieChartType"></canvas>
-</div>-->
-<md-tab-group>
+
+<md-tab-group (selectChange)="refreshData()">
   <md-tab class="tabDetail">
     <template md-tab-label>General</template>
     <template md-tab-content>
+      <div align="left" id="GraphBurndown">
+        <div align="center"><h4>Burndown Chart</h4></div>
+        <h6><b><font style='color:#DD0000'>Planned</font> / <font style='color:#00517D'>Executed</font></b></h6>
+        <canvas baseChart
+          [data]="lineChartData"
+          [labels]="lineChartLabels"
+          [chartType]="lineChartType"
+          [legend]="lineChartLegend"
+          [colors]="lineChartColors"
+          [options]="chartOptions"></canvas>
+      </div>
       <div class="monTabContent">
-        <div align="center">
-          <h4>Last Informations</h4>
-        </div>
+        <div align="center"><h4>Comments</h4></div>
         <div [innerHTML]="releaseBO.gsx$comment.$t"></div>
       </div>
     </template>
@@ -35,6 +30,24 @@
   <md-tab class="tabDetail">
     <template md-tab-label>Content</template>
     <template md-tab-content>
+      <div align="center"><h4>Content Repartition</h4></div>
+      <div align="left" id="GraphEvol">
+      <canvas baseChart
+                [data]="pieChartData"
+                [labels]="pieChartLabels"
+                [chartType]="pieChartType"
+                [colors]="pieChartColors"
+                [options]="chartOptions"></canvas>
+      </div>
+      <div align="center"><h4>Content Status</h4></div>
+      <div align="left" id="GraphStatus">
+      <canvas baseChart
+                [data]="pieChartData2"
+                [labels]="pieChartLabels2"
+                [chartType]="pieChartType"
+                [colors]="pieChartColors"
+                [options]="chartOptions"></canvas>
+      </div>
       <table>
           <tr class="fisrtLine">
             <td>Ref.</td>
