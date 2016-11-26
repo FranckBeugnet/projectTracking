@@ -19,12 +19,16 @@ export class ReleaseDetailComponent implements OnInit {
   releaseNumber: string;
   errorMessage: string;
 
+  public barChartLabels:string[] = ['Major', 'Medium', 'Low'];
+  public barChartData:Array<any> = [ [2, 2, 1],[3, 3, 3]];
+
+  public barChartType:string = 'bar';
+  public pieChartType:string = 'pie';
+  public lineChartType:string = 'line';
+
   public lineChartData:Array<any> = [[],[]];
   public lineChartLabels:Array<any> = [];
-  public lineChartType:string = 'line';
   public lineChartLegend:boolean = false;
-
-  public pieChartType:string = 'pie';
   public pieChartLabels:string[] =[];
   public pieChartData:number[] = [];
   public pieChartLabels2:string[] =[];
@@ -51,7 +55,9 @@ export class ReleaseDetailComponent implements OnInit {
       pointHoverBorderColor: '#fff'
     },
   ];
-
+  public barChartColors:Array<any> = [
+    {backgroundColor:"#DD0000",},{backgroundColor:"#00517D"}
+  ];
   public pieChartColors:Array<any> = [
     { backgroundColor: ["#00517D", "#00753A", "#7979FF", "#BBBB00","#808080","#FF8000"] }
   ];
@@ -67,15 +73,21 @@ export class ReleaseDetailComponent implements OnInit {
     this.route.params.forEach((params: Params) => {
       this.releaseNumber = params['id'];
     });
-    this.refreshData();
     this.releaseBO=this.localDataService.getReleaseDetail(this.releaseNumber);
     this.contentBOData=this.localDataService.getContentDetail(this.releaseNumber);
+    this.burndownBOData=this.localDataService.getBurndownList();
+    this.refreshChart(this.contentBOData,this.burndownBOData,this.releaseBO);
+  }
+
+  refreshChartFromTemplate(): void {
+    this.refreshChart(this.contentBOData,this.burndownBOData,this.releaseBO);
   }
 
   //call remote provider for getting data
-  refreshData(): void {
-    this.responseRefreshDataContent(this.localDataService.getContentDetail(this.releaseNumber));
-    this.responseRefreshDataBurndown(this.localDataService.getBurndownList());
+  refreshChart(contentData:ContentBO[],burndownData:BurndownBO[],releaseData:ReleaseBO): void {
+    this.responseRefreshDataContent(contentData);
+    this.responseRefreshDataBurndown(burndownData);
+    this.responseRefreshQualityContent(releaseData);
     setTimeout(function(){
       let myelement: HTMLElement;
       try{
@@ -135,6 +147,21 @@ export class ReleaseDetailComponent implements OnInit {
     lineChartDataTemp.push(serie1,serie2);
     this.lineChartLabels = lineChartLabelsTemp;
     this.lineChartData = lineChartDataTemp;
+  }
+
+  //parse data for graph Burndown
+  responseRefreshQualityContent(data:ReleaseBO){
+    let tempBarChartData :Array<any>  = [];
+    var serie1:Array<any> =[];
+    var serie2:Array<any> =[];
+    serie1.push(data.gsx$openissueshigh.$t);
+    serie2.push(data.gsx$totalissueshigh.$t);
+    serie1.push(data.gsx$openissuesmedium.$t);
+    serie2.push(data.gsx$totalissuesmedium.$t);
+    serie1.push(data.gsx$openissueslow.$t);
+    serie2.push(data.gsx$totalissueslow.$t);
+    tempBarChartData.push(serie1,serie2);
+    this.barChartData = tempBarChartData;
   }
 
 }

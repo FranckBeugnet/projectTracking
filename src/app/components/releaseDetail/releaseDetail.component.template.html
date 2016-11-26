@@ -6,7 +6,7 @@
 </md-toolbar>
 <div class="blank-toolbar"></div>
 
-<md-tab-group (selectChange)="refreshData()">
+<md-tab-group (selectChange)="refreshChartFromTemplate()">
   <md-tab class="tabDetail">
     <template md-tab-label>General</template>
     <template md-tab-content>
@@ -71,8 +71,17 @@
     <template md-tab-label>Quality</template>
     <template md-tab-content>
       <div align='center'>
-        Under Construction<br>
-        <md-icon class="md-48">build</md-icon>
+        <div align="center"><h4>Issues</h4></div>
+        <div align="left" id="GraphIssues">
+        <h6><b><font style='color:#DD0000'>Open</font> / <font style='color:#00517D'>Total</font></b></h6>
+        <canvas baseChart
+                  [data]="barChartData"
+                  [labels]="barChartLabels"
+                  [chartType]="barChartType"
+                  [legend]="lineChartLegend"
+                  [colors]="barChartColors"
+                  [options]="chartOptions"></canvas>
+        </div>
       </div>
     </template>
   </md-tab>

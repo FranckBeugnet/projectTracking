@@ -21,26 +21,26 @@ export class RemoteDataService {
   }
 
   getReleaseList (): Observable<ReleaseBO[]> {
-    console.log("XHR Request to : " + this.dataUrlRelease);
     this.googleSheetKey=this.localDataService.getSheetData();
+    console.log("XHR Request to : " + this.dataUrlRelease.replace('googleSheetKey',this.googleSheetKey));
     return this.http.get(this.dataUrlRelease.replace('googleSheetKey',this.googleSheetKey))
                     .map(this.extractData)
                     .catch(this.handleError);
   }
   getBurndownList (): Observable<BurndownBO[]> {
-    console.log("XHR Request to : " + this.dataUrlBurndown);
+    console.log("XHR Request to : " + this.dataUrlBurndown.replace('googleSheetKey',this.googleSheetKey));
     return this.http.get(this.dataUrlBurndown.replace('googleSheetKey',this.googleSheetKey))
                     .map(this.extractData)
                     .catch(this.handleError);
   }
   getContentList (): Observable<ContentBO[]> {
-    console.log("XHR Request to : " + this.dataUrlContent);
+    console.log("XHR Request to : " + this.dataUrlContent.replace('googleSheetKey',this.googleSheetKey));
     return this.http.get(this.dataUrlContent.replace('googleSheetKey',this.googleSheetKey))
                     .map(this.extractData)
                     .catch(this.handleError);
   }
   getMemberList (): Observable<MemberBO[]> {
-    console.log("XHR Request to : " + this.dataUrlTeam);
+    console.log("XHR Request to : " + this.dataUrlTeam.replace('googleSheetKey',this.googleSheetKey));
     return this.http.get(this.dataUrlTeam.replace('googleSheetKey',this.googleSheetKey))
                     .map(this.extractData)
                     .catch(this.handleError);

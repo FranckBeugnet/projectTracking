@@ -20,4 +20,22 @@ export class ReleaseBO {
   gsx$comment: {
     $t:string
   };
+  gsx$openissueshigh: {
+    $t:string
+  };
+  gsx$totalissueshigh: {
+    $t:string
+  };
+  gsx$openissuesmedium: {
+    $t:string
+  };
+  gsx$totalissuesmedium: {
+    $t:string
+  };
+  gsx$openissueslow: {
+    $t:string
+  };
+  gsx$totalissueslow: {
+    $t:string
+  };
 }
