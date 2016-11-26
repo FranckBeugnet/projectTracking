@@ -8,3 +8,5 @@ Release Note since previous version :
 - Add Team Member Section
 - Add release filter option on the left side menu
 - Fixe Toolbar At top of the screen
+- Chart are now into tabs
+- Add issues chart
