@@ -9,5 +9,5 @@ Release Note since previous version :
 - Add release filter option on the left side menu
 - Fixe Toolbar At top of the screen
 - Charts are now into tabs
-- Add issues chart
+- Add issues chart into quality section
 - Auto refreh data one time by day
