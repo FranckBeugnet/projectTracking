@@ -16,7 +16,6 @@ import '../../rxjs-operators';
 
 export class ReleaseListComponent {
 
-  errorMessage: string;
   loadingData:boolean=false;
   releasesBO: ReleaseBO[];
   dateData: string;
@@ -31,13 +30,17 @@ export class ReleaseListComponent {
     this.releasesBO =this.localDataService.getReleaseList();
     this.dateData=this.localDataService.getdateData();
     this.inputSheetDataValue= this.localDataService.getSheetData();
+    //auto-refresh one time by day
+    if (this.dateData === null ||this.dateData === undefined || this.dateData.slice(0,10)!=(new Date()).toISOString().slice(0,10)){
+      this.refreshData();
+    }
   }
 
   refreshData(): void {
     this.loadingData=true;
     this.remoteDataService.getReleaseList().subscribe(
                        response => this.responseRefreshReleaseListData(response),
-                       error =>  this.errorMessage = <any>error);
+                       error =>  this.refreshError(<any>error));
   }
 
   saveData(): void {
@@ -50,21 +53,21 @@ export class ReleaseListComponent {
     this.localDataService.setReleaseList(response);
     this.remoteDataService.getContentList().subscribe(
                       response => this.responseRefreshContentListData(response),
-                      error =>  this.errorMessage = <any>error);
+                      error =>  this.refreshError(<any>error));
   }
 
   responseRefreshContentListData(response:ContentBO[]){
     this.localDataService.setContentList(response);
     this.remoteDataService.getMemberList().subscribe(
                       response => this.responseRefreshMemberListData(response),
-                      error =>  this.errorMessage = <any>error);
+                      error =>  this.refreshError(<any>error));
   }
 
   responseRefreshMemberListData(response:MemberBO[]){
     this.localDataService.setMemberList(response);
     this.remoteDataService.getBurndownList().subscribe(
                       response => this.responseRefreshBurndownListData(response),
-                      error =>  this.errorMessage = <any>error);
+                      error =>  this.refreshError(<any>error));
   }
 
   responseRefreshBurndownListData(response:BurndownBO[]){
@@ -75,9 +78,15 @@ export class ReleaseListComponent {
     this.showToast('Données mise à jour','3000');
   }
 
+  refreshError(errorMessage:string){
+      this.loadingData = false;
+      this.showToast(errorMessage,'3000');
+  }
+
   showToast(message : string, duration : string){
     let config = new MdSnackBarConfig(this.viewContainerRef);
     let simpleSnackBarRef = this.snackBar.open(message, '', config);
     setTimeout(simpleSnackBarRef.dismiss.bind(simpleSnackBarRef), duration);
   }
+
 }
