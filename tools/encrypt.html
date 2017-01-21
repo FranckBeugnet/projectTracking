@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>Project Tracking - Data Encryption With AES Algorithm</title>
+  </head>
+  <body>
+    <script src="core.js"></script>
+    <script src="crypto-js.js"></script>
+    <script src="aes.js"></script>
+    <script>
+    var utils = {
+        encrypt: function(data,key){
+          // Encrypt
+          var ciphertext = CryptoJS.AES.encrypt(data, key);
+          document.getElementById('dataReponse').innerHTML=ciphertext.toString();
+		    }
+    };
+    </script>
+    <input type='text' id='dataKey' style="width:100%;" value='AES-SECRET-KEY' /><br><br>
+    <textarea cols="40" rows="100" style="width:100%; height:500px;"  id='dataValue' width='500' value='data to encode'></textarea><br><br>
+    <input type='button' value='Encrypt' onclick="utils.encrypt(document.getElementById('dataValue').value,document.getElementById('dataKey').value);"/><br><br>
+    <div id='dataReponse'></div>
+  </body>
+</html>

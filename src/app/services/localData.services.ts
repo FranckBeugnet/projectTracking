@@ -28,6 +28,13 @@ export class LocalDataService {
     return returnvalue;
   }
 
+  setAESKeyData (data:string) {
+    localStorage.setItem('AESKey',data);
+  }
+  getAESKeyData () : any {
+    return localStorage.getItem('AESKey');
+  }
+
   setdateData () {
     localStorage.setItem(this.dateDataKey,(new Date()).toISOString().substr(0,19).replace('T',' '));
   }

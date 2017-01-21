@@ -109,3 +109,12 @@ md-card-title, md-card-subtitle, md-card-content, md-card-actions{
 md-card-actions{
   margin-left: 0px !important;
 }
+
+@media (min-width: 100px) {
+	.smallview {display: none;}
+  .largeview {display: block;}
+}
+@media (max-width: 999px) {
+	.smallview {display: block;}
+  .largeview {display: none;}
+}

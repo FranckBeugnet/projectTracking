@@ -20,6 +20,7 @@ export class ReleaseListComponent {
   releasesBO: ReleaseBO[];
   dateData: string;
   inputSheetDataValue: string;
+  AESKeyDataValue: string;
   inputReleaseFilterValue: string = "";
 
   constructor(
@@ -30,10 +31,12 @@ export class ReleaseListComponent {
     this.releasesBO =this.localDataService.getReleaseList();
     this.dateData=this.localDataService.getdateData();
     this.inputSheetDataValue= this.localDataService.getSheetData();
+    this.AESKeyDataValue= this.localDataService.getAESKeyData();
     //auto-refresh one time by day
     if (this.dateData === null ||this.dateData === undefined || this.dateData.slice(0,10)!=(new Date()).toISOString().slice(0,10)){
       this.refreshData();
     }
+
   }
 
   refreshData(): void {
@@ -45,6 +48,7 @@ export class ReleaseListComponent {
 
   saveData(): void {
     this.localDataService.setSheetData(this.inputSheetDataValue);
+    this.localDataService.setAESKeyData(this.AESKeyDataValue);
     this.showToast('Données sauvegardées','3000');
   }
 

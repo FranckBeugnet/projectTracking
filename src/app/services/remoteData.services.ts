@@ -7,6 +7,9 @@ import { MemberBO } from '../bo/memberBO';
 import { Observable }     from 'rxjs/Observable';
 import { LocalDataService } from '../services/localData.services';
 
+var CryptoJS = require("crypto-js");
+var AES = require("crypto-js/aes");
+
 @Injectable()
 export class RemoteDataService {
 
@@ -24,7 +27,7 @@ export class RemoteDataService {
     this.googleSheetKey=this.localDataService.getSheetData();
     console.log("XHR Request to : " + this.dataUrlRelease.replace('googleSheetKey',this.googleSheetKey));
     return this.http.get(this.dataUrlRelease.replace('googleSheetKey',this.googleSheetKey))
-                    .map(this.extractData)
+                    .map(this.extractDataRelease)
                     .catch(this.handleError);
   }
   getBurndownList (): Observable<BurndownBO[]> {
@@ -36,17 +39,109 @@ export class RemoteDataService {
   getContentList (): Observable<ContentBO[]> {
     console.log("XHR Request to : " + this.dataUrlContent.replace('googleSheetKey',this.googleSheetKey));
     return this.http.get(this.dataUrlContent.replace('googleSheetKey',this.googleSheetKey))
-                    .map(this.extractData)
+                    .map(this.extractDataContent)
                     .catch(this.handleError);
   }
   getMemberList (): Observable<MemberBO[]> {
     console.log("XHR Request to : " + this.dataUrlTeam.replace('googleSheetKey',this.googleSheetKey));
     return this.http.get(this.dataUrlTeam.replace('googleSheetKey',this.googleSheetKey))
-                    .map(this.extractData)
+                    .map(this.extractDataTeam)
                     .catch(this.handleError);
   }
+
   private extractData(res: Response) {
     let body = res.json();
+    return body.feed.entry || { };
+  }
+
+  private extractDataTeam(res: Response) {
+    let body = res.json();
+    let AESKey=localStorage.getItem('AESKey');
+    //data to decode ?
+    if (AESKey != undefined && AESKey != ''){
+      for (let i in body.feed.entry){
+        try {
+          var bytes  = AES.decrypt(body.feed.entry[i].gsx$name.$t, AESKey);
+          var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+          body.feed.entry[i].gsx$name.$t=plaintext;
+
+          var bytes  = AES.decrypt(body.feed.entry[i].gsx$function.$t, AESKey);
+          var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+          body.feed.entry[i].gsx$function.$t=plaintext;
+
+          var bytes  = AES.decrypt(body.feed.entry[i].gsx$gsm.$t, AESKey);
+          var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+          body.feed.entry[i].gsx$gsm.$t=plaintext;
+
+          var bytes  = AES.decrypt(body.feed.entry[i].gsx$mail.$t, AESKey);
+          var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+          body.feed.entry[i].gsx$mail.$t=plaintext;
+        }catch (e) {
+          console.log(e);
+        }
+      }
+    }
+    return body.feed.entry || { };
+  }
+
+  private extractDataContent(res: Response) {
+    let body = res.json();
+    let AESKey=localStorage.getItem('AESKey');
+    //data to decode ?
+    if (AESKey != undefined && AESKey != ''){
+      for (let i in body.feed.entry){
+        try {
+          var bytes  = AES.decrypt(body.feed.entry[i].gsx$ref.$t, AESKey);
+          var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+          body.feed.entry[i].gsx$ref.$t=plaintext;
+
+          var bytes  = AES.decrypt(body.feed.entry[i].gsx$detail.$t, AESKey);
+          var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+          body.feed.entry[i].gsx$detail.$t=plaintext;
+
+          var bytes  = AES.decrypt(body.feed.entry[i].gsx$devestimate.$t, AESKey);
+          var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+          body.feed.entry[i].gsx$devestimate.$t=plaintext;
+
+          var bytes  = AES.decrypt(body.feed.entry[i].gsx$allestimate.$t, AESKey);
+          var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+          body.feed.entry[i].gsx$allestimate.$t=plaintext;
+
+          var bytes  = AES.decrypt(body.feed.entry[i].gsx$status.$t, AESKey);
+          var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+          body.feed.entry[i].gsx$status.$t=plaintext;
+        }catch (e) {
+          console.log(e);
+        }
+      }
+    }
+    return body.feed.entry || { };
+  }
+
+  private extractDataRelease(res: Response) {
+    let body = res.json();
+    let AESKey=localStorage.getItem('AESKey');
+    //data to decode ?
+    if (AESKey != undefined && AESKey != ''){
+      for (let i in body.feed.entry){
+        try {
+          var bytes  = AES.decrypt(body.feed.entry[i].gsx$application.$t, AESKey);
+          var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+          body.feed.entry[i].gsx$application.$t=plaintext;
+
+          var bytes  = AES.decrypt(body.feed.entry[i].gsx$version.$t, AESKey);
+          var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+          body.feed.entry[i].gsx$version.$t=plaintext;
+
+          var bytes  = AES.decrypt(body.feed.entry[i].gsx$comment.$t, AESKey);
+          var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+          body.feed.entry[i].gsx$comment.$t=plaintext;
+
+        }catch (e) {
+          console.log(e);
+        }
+      }
+    }
     return body.feed.entry || { };
   }
   private handleError (error: any) {
@@ -55,4 +150,13 @@ export class RemoteDataService {
     console.error("XHR Request error : " + errMsg);
     return Observable.throw(errMsg);
   }
+
+
+  // Encrypt
+//  var ciphertext = AES.encrypt('test de données AES', 'atosveolia201620162016');
+  //console.log(ciphertext.toString());
+  // Decrypt
+/*  var bytes  = AES.decrypt('U2FsdGVkX1/IkhYenxKFZ27zPE34kioemJogzrWa1FTN5BTnQDFfah7eXpiwMEu5vUTnXsX3eWflqbodDUWo+A==', 'atosveolia201620162016');
+  var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+  console.log(plaintext);*/
 }

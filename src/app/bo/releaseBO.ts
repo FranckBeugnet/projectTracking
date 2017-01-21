@@ -1,4 +1,6 @@
 export class ReleaseBO {
+  constructor () {}
+
   gsx$id : {
     $t:string
   };

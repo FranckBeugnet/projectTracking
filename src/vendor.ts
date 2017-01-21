@@ -15,6 +15,8 @@ import '@angular/material/core/theming/prebuilt/deeppurple-amber.css';
 //chartjs
 import 'chart.js';
 import 'ng2-charts';
+//cryptographie
+import 'crypto-js';
 //calendar
 import 'angular2-calendar';
 import 'angular2-calendar/dist/css/angular2-calendar.css';

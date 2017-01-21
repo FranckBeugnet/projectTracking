@@ -19,15 +19,17 @@
         <md-hint align="end">{{inputReleaseFilter.characterCount}} / 100</md-hint>
       </md-input>
       <br>------------------------------------------<br>
-      Last Data Update
-      <br>
-      {{dateData}}
-      <br>------------------------------------------<br>
       <md-input placeholder="GoogleSheetDataID" maxlength="100" class="demo-full-width" [(ngModel)]="inputSheetDataValue" #inputSheetData>
         <md-hint align="end">{{inputSheetData.characterCount}} / 100</md-hint>
       </md-input>
-      <br><br>
-      <button md-raised-button id="saveButton" (click)="saveData()">Save</button>
+      <br>------------------------------------------<br>
+      <md-input placeholder="AES Secret Key" maxlength="100" class="demo-full-width" [(ngModel)]="AESKeyDataValue" #AESKeyData>
+        <md-hint align="end">{{AESKeyData.characterCount}} / 100</md-hint>
+      </md-input>
+      <br>------------------------------------------<br>
+      Last Data Update
+      <br>
+      {{dateData}}
       <br>------------------------------------------<br>
       Version : 1.0
       <br>
@@ -35,11 +37,7 @@
       <br>
       Contact : franck2903@gmail.com
       <br>------------------------------------------<br>
-      <!--<b><font style="color:#DD0000">Disclaimer :<br>
-      Only for testing uses<br>
-      For commercial uses you have to<br>
-      buy professional version</font></b>
-      <br>------------------------------------------<br>-->
+      <button md-raised-button id="saveButton" (click)="saveData()">Save</button>
       <button md-raised-button id="closeButton" #closeStartButton (click)="start.close()">Close</button>
     </div>
   </md-sidenav>
