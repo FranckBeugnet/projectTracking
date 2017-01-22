@@ -1,3 +1,18 @@
+1.1.0 :
+New Feature - Encode your data with AES
+If you want to protect data that you publish on Android, you can now encode data with the AES Algorithm.
+All column with the header "AES Crypt Option" can save encode data.
+You can merge data encode et no encode on the same column.
+For activating this option, you just have to set the AES Secret Key on the left side menu. (with the key or your choice)
+For encoding data, you just have to use the site : http://perso.numericable.fr/fbeugnet/projectTracking/encrypt.html
+
+Chiffrer vos données avec AES
+Si vous souhaitez protéger les données que vous publiez sur Google, vous pouvez désormais les encoder avec le célèbre algorithme AES (256 bit)
+Toutes les colonnes avec l'en-tête "AES Crypt Option" peuvent etre encodées.
+Vous pouvez mixer les données encodées ou non sur une même colonne.
+Pour activer cette option, vous devez juste renseigner AES Secret Key dans votre menu gauche.
+Pour encoder vos données, rendez vous sur : http://perso.numericable.fr/fbeugnet/projectTracking/encrypt.html
+
 Project Tracking is an Android application for publishing Software Development Project Indicators.
 With this application you can communicate to other Project Actors (Client, Team, Direction) :
   - Release Burndown
@@ -33,6 +48,13 @@ NB : you can customize style but not change column name and tab order
 - Content tab is link to Release List with the id column
 - Team Tab manage your team.  In avatar column you can write image src (direct url or base64 data - https://www.base64-image.de/)
 
+NB : If you want to protect data that you publish on Android, you can now encode data with the AES Algorithm. (256-bit)
+All column with the header "AES Crypt Option" can save encode data.
+You can merge data encode et no encode on the same column.
+For activating this option, you just have to set the AES Secret Key on the left side menu. (with the key or your choice)
+For encoding data, you just have to use the site : http://perso.numericable.fr/fbeugnet/projectTracking/encrypt.html
+
+cordova build  --release
 
 D:\Android\sdk\build-tools\25.0.1\zipalign -v -p 4 android-release-unsigned.apk android-release-unsigned-aligned.apk
 D:\Android\sdk\build-tools\25.0.1\apksigner sign --ks D:\androidProjects\projectTracking-Webpack\config\project-tracking-demo-key.jks android-release-unsigned-aligned.apk --out android-release-v1.0.1-signed-aligned.apk

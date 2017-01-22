@@ -63,22 +63,20 @@ export class RemoteDataService {
         try {
           var bytes  = AES.decrypt(body.feed.entry[i].gsx$name.$t, AESKey);
           var plaintext = bytes.toString(CryptoJS.enc.Utf8);
-          body.feed.entry[i].gsx$name.$t=plaintext;
+          if(plaintext!=''){body.feed.entry[i].gsx$name.$t=plaintext;}
 
           var bytes  = AES.decrypt(body.feed.entry[i].gsx$function.$t, AESKey);
           var plaintext = bytes.toString(CryptoJS.enc.Utf8);
-          body.feed.entry[i].gsx$function.$t=plaintext;
+          if(plaintext!=''){body.feed.entry[i].gsx$function.$t=plaintext;}
 
           var bytes  = AES.decrypt(body.feed.entry[i].gsx$gsm.$t, AESKey);
           var plaintext = bytes.toString(CryptoJS.enc.Utf8);
-          body.feed.entry[i].gsx$gsm.$t=plaintext;
+          if(plaintext!=''){body.feed.entry[i].gsx$gsm.$t=plaintext;}
 
           var bytes  = AES.decrypt(body.feed.entry[i].gsx$mail.$t, AESKey);
           var plaintext = bytes.toString(CryptoJS.enc.Utf8);
-          body.feed.entry[i].gsx$mail.$t=plaintext;
-        }catch (e) {
-          console.log(e);
-        }
+          if(plaintext!=''){body.feed.entry[i].gsx$mail.$t=plaintext;}
+        }catch (e) {}
       }
     }
     return body.feed.entry || { };
@@ -93,26 +91,24 @@ export class RemoteDataService {
         try {
           var bytes  = AES.decrypt(body.feed.entry[i].gsx$ref.$t, AESKey);
           var plaintext = bytes.toString(CryptoJS.enc.Utf8);
-          body.feed.entry[i].gsx$ref.$t=plaintext;
+          if(plaintext!=''){body.feed.entry[i].gsx$ref.$t=plaintext;}
 
           var bytes  = AES.decrypt(body.feed.entry[i].gsx$detail.$t, AESKey);
           var plaintext = bytes.toString(CryptoJS.enc.Utf8);
-          body.feed.entry[i].gsx$detail.$t=plaintext;
+          if(plaintext!=''){body.feed.entry[i].gsx$detail.$t=plaintext;}
 
           var bytes  = AES.decrypt(body.feed.entry[i].gsx$devestimate.$t, AESKey);
           var plaintext = bytes.toString(CryptoJS.enc.Utf8);
-          body.feed.entry[i].gsx$devestimate.$t=plaintext;
+          if(plaintext!=''){body.feed.entry[i].gsx$devestimate.$t=plaintext;}
 
           var bytes  = AES.decrypt(body.feed.entry[i].gsx$allestimate.$t, AESKey);
           var plaintext = bytes.toString(CryptoJS.enc.Utf8);
-          body.feed.entry[i].gsx$allestimate.$t=plaintext;
+          if(plaintext!=''){body.feed.entry[i].gsx$allestimate.$t=plaintext;}
 
           var bytes  = AES.decrypt(body.feed.entry[i].gsx$status.$t, AESKey);
           var plaintext = bytes.toString(CryptoJS.enc.Utf8);
-          body.feed.entry[i].gsx$status.$t=plaintext;
-        }catch (e) {
-          console.log(e);
-        }
+          if(plaintext!=''){body.feed.entry[i].gsx$status.$t=plaintext;}
+        }catch (e) {}
       }
     }
     return body.feed.entry || { };
@@ -127,19 +123,17 @@ export class RemoteDataService {
         try {
           var bytes  = AES.decrypt(body.feed.entry[i].gsx$application.$t, AESKey);
           var plaintext = bytes.toString(CryptoJS.enc.Utf8);
-          body.feed.entry[i].gsx$application.$t=plaintext;
+          if(plaintext!=''){body.feed.entry[i].gsx$application.$t=plaintext;}
 
           var bytes  = AES.decrypt(body.feed.entry[i].gsx$version.$t, AESKey);
           var plaintext = bytes.toString(CryptoJS.enc.Utf8);
-          body.feed.entry[i].gsx$version.$t=plaintext;
+          if(plaintext!=''){body.feed.entry[i].gsx$version.$t=plaintext;}
 
           var bytes  = AES.decrypt(body.feed.entry[i].gsx$comment.$t, AESKey);
           var plaintext = bytes.toString(CryptoJS.enc.Utf8);
-          body.feed.entry[i].gsx$comment.$t=plaintext;
+          if(plaintext!=''){body.feed.entry[i].gsx$comment.$t=plaintext;}
 
-        }catch (e) {
-          console.log(e);
-        }
+        }catch (e) {}
       }
     }
     return body.feed.entry || { };
@@ -151,12 +145,4 @@ export class RemoteDataService {
     return Observable.throw(errMsg);
   }
 
-
-  // Encrypt
-//  var ciphertext = AES.encrypt('test de données AES', 'atosveolia201620162016');
-  //console.log(ciphertext.toString());
-  // Decrypt
-/*  var bytes  = AES.decrypt('U2FsdGVkX1/IkhYenxKFZ27zPE34kioemJogzrWa1FTN5BTnQDFfah7eXpiwMEu5vUTnXsX3eWflqbodDUWo+A==', 'atosveolia201620162016');
-  var plaintext = bytes.toString(CryptoJS.enc.Utf8);
-  console.log(plaintext);*/
 }

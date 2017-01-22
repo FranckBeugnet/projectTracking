@@ -110,11 +110,19 @@ md-card-actions{
   margin-left: 0px !important;
 }
 
-@media (min-width: 100px) {
+@media (min-width: 1600px) {
 	.smallview {display: none;}
   .largeview {display: block;}
+  /*.largegraph{
+      height: 60% !important;
+      width: 100% !important
+  }*/
+  /*.smallgraph{
+      height: 40% !important;
+      width: 30% !important
+  }*/
 }
-@media (max-width: 999px) {
+@media (max-width: 1599px) {
 	.smallview {display: block;}
   .largeview {display: none;}
 }

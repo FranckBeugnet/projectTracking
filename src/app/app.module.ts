@@ -28,9 +28,11 @@ import { FilterRelease } from './pipes/filterRelease';
       { path: 'D:/D:/androidProjects/projectTracking-Webpack/dist', component: ReleaseListComponent },
       { path: 'android_asset/www/', component: ReleaseListComponent },
       { path: '', component: ReleaseListComponent },
-      { path: 'releaseDetail/:id', component: ReleaseDetailComponent },
+      { path: 'teamMember', component: TeamMemberComponent },
       { path: 'releaseCalendar', component: ReleaseCalendarComponent },
-      { path: 'teamMember', component: TeamMemberComponent }
+      { path: 'releaseDetail/:id', component: ReleaseDetailComponent },
+      { path: 'releasetdb/:id', component: ReleaseDetailComponent },
+      { path: ':id', component: ReleaseDetailComponent }
     ])
   ],
   declarations: [

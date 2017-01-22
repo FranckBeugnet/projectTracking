@@ -1,14 +1,16 @@
-import { Component,  OnInit } from '@angular/core';
+import { Component,  OnInit, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Params }   from '@angular/router';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { LocalDataService } from '../../services/localData.services';
+import { RemoteDataService } from '../../services/remoteData.services';
+import { RefreshDataService } from '../../services/refreshData.services';
 import { BurndownBO } from '../../bo/burndownBO';
 import { ReleaseBO } from '../../bo/releaseBO';
 import { ContentBO } from '../../bo/contentBO';
 
 @Component({
     templateUrl: 'releaseDetail.component.template.html',
-    providers: [LocalDataService]
+    providers: [LocalDataService,RefreshDataService,RemoteDataService]
 })
 
 export class ReleaseDetailComponent implements OnInit {
@@ -65,6 +67,7 @@ export class ReleaseDetailComponent implements OnInit {
 
   constructor(
     private localDataService: LocalDataService,
+    private refreshDataService: RefreshDataService,
     private route: ActivatedRoute) {
   }
 
@@ -73,6 +76,13 @@ export class ReleaseDetailComponent implements OnInit {
     this.route.params.forEach((params: Params) => {
       this.releaseNumber = params['id'];
     });
+    //auto-refresh one time by hour in rdb mode
+    if(window.location.pathname.indexOf('releasetdb')!=-1){
+      let dateData=this.localDataService.getdateData();
+      if (dateData === null ||dateData === undefined || dateData.slice(0,14)!=(new Date()).toISOString().slice(0,14).replace('T',' ')){
+        this.refreshDataService.refreshAllData();
+      }
+    }
     this.releaseBO=this.localDataService.getReleaseDetail(this.releaseNumber);
     this.contentBOData=this.localDataService.getContentDetail(this.releaseNumber);
     this.burndownBOData=this.localDataService.getBurndownList();
