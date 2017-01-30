@@ -133,6 +133,10 @@ export class RemoteDataService {
           var plaintext = bytes.toString(CryptoJS.enc.Utf8);
           if(plaintext!=''){body.feed.entry[i].gsx$comment.$t=plaintext;}
 
+          var bytes  = AES.decrypt(body.feed.entry[i].gsx$status.$t, AESKey);
+          var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+          if(plaintext!=''){body.feed.entry[i].gsx$status.$t=plaintext;}
+
         }catch (e) {}
       }
     }

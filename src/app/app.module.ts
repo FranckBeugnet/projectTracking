@@ -31,8 +31,7 @@ import { FilterRelease } from './pipes/filterRelease';
       { path: 'teamMember', component: TeamMemberComponent },
       { path: 'releaseCalendar', component: ReleaseCalendarComponent },
       { path: 'releaseDetail/:id', component: ReleaseDetailComponent },
-      { path: 'releasetdb/:id', component: ReleaseDetailComponent },
-      { path: ':id', component: ReleaseDetailComponent }
+      { path: ':id', component: ReleaseDetailComponent },
     ])
   ],
   declarations: [

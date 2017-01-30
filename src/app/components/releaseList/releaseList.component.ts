@@ -36,6 +36,17 @@ export class ReleaseListComponent {
     if (this.dateData === null ||this.dateData === undefined || this.dateData.slice(0,10)!=(new Date()).toISOString().slice(0,10)){
       this.refreshData();
     }
+    //auto-refresh each hour
+    /*if(appComponent.singletonUpdate===false){
+      appComponent.singletonUpdate=true;
+      setInterval(() => {
+      this.refreshData();
+      }, 5000 );
+    }*/
+  }
+
+  //get release number in get param
+  ngOnInit(): void {
 
   }
 

@@ -4,6 +4,9 @@ export class ReleaseBO {
   gsx$id : {
     $t:string
   };
+  gsx$hide : {
+    $t:string
+  };
   gsx$color : {
     $t:string
   };
@@ -11,6 +14,9 @@ export class ReleaseBO {
     $t:string
   };
   gsx$version: {
+    $t:string
+  };
+  gsx$status: {
     $t:string
   };
   gsx$start: {

@@ -76,17 +76,17 @@ export class ReleaseDetailComponent implements OnInit {
     this.route.params.forEach((params: Params) => {
       this.releaseNumber = params['id'];
     });
-    //auto-refresh one time by hour in rdb mode
-    if(window.location.pathname.indexOf('releasetdb')!=-1){
-      let dateData=this.localDataService.getdateData();
-      if (dateData === null ||dateData === undefined || dateData.slice(0,14)!=(new Date()).toISOString().slice(0,14).replace('T',' ')){
-        this.refreshDataService.refreshAllData();
-      }
-    }
     this.releaseBO=this.localDataService.getReleaseDetail(this.releaseNumber);
     this.contentBOData=this.localDataService.getContentDetail(this.releaseNumber);
     this.burndownBOData=this.localDataService.getBurndownList();
     this.refreshChart(this.contentBOData,this.burndownBOData,this.releaseBO);
+    //refresh data 1 time by hour
+    /*setInterval(() => {
+      this.releaseBO=this.localDataService.getReleaseDetail(this.releaseNumber);
+      this.contentBOData=this.localDataService.getContentDetail(this.releaseNumber);
+      this.burndownBOData=this.localDataService.getBurndownList();
+      this.refreshChart(this.contentBOData,this.burndownBOData,this.releaseBO);
+    }, 5000 );*/
   }
 
   refreshChartFromTemplate(): void {

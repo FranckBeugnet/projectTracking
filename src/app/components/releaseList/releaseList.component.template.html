@@ -42,11 +42,11 @@
     </div>
   </md-sidenav>
   <md-list>
-     <md-list-item class="mylistItem" *ngFor="let currentReleasesBO of (releasesBO | filterRelease: inputReleaseFilterValue)"  routerLink="/releaseDetail/{{currentReleasesBO.gsx$id.$t}}" routerLinkActive="active">
+     <md-list-item *ngFor="let currentReleasesBO of (releasesBO | filterRelease: inputReleaseFilterValue)" routerLink="/releaseDetail/{{currentReleasesBO.gsx$id.$t}}" routerLinkActive="active" [style.background-color]="currentReleasesBO.gsx$color.$t" >
         <md-icon md-list-avatar class="releaseIcon" ><a [style.color]="currentReleasesBO.gsx$color.$t" routerLink="/releaseDetail/{{currentReleasesBO.gsx$id.$t}}" routerLinkActive="active">assessment</a></md-icon>
-        <h3 md-line> {{currentReleasesBO.gsx$application.$t}} </h3>
+        <h3 md-line > {{currentReleasesBO.gsx$application.$t}} </h3>
         <p md-line>
-          <span> Version : {{currentReleasesBO.gsx$version.$t}} </span>
+          <span> Version : {{currentReleasesBO.gsx$version.$t}} / {{currentReleasesBO.gsx$status.$t}}  </span>
         </p>
         <p md-line>
           <span> Start : {{currentReleasesBO.gsx$start.$t}} End : {{currentReleasesBO.gsx$end.$t}}  </span>
